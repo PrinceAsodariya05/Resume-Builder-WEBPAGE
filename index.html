@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Your Professional Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="logo">Resume Builder</h1>
+                <div class="header-actions">
+                    <button class="btn btn--secondary" id="clearBtn">Clear All</button>
+                    <button class="btn btn--primary" id="exportBtn">Export PDF</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <div class="resume-layout">
+                    <!-- Form Panel -->
+                    <div class="form-panel">
+                        <div class="form-container">
+                            <!-- Personal Information -->
+                            <section class="form-section">
+                                <h2 class="section-title">Personal Information</h2>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label" for="fullName">Full Name *</label>
+                                        <input type="text" id="fullName" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="jobTitle">Job Title *</label>
+                                        <input type="text" id="jobTitle" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="email">Email *</label>
+                                        <input type="email" id="email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="phone">Phone</label>
+                                        <input type="tel" id="phone" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="location">Location</label>
+                                        <input type="text" id="location" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="website">Website/Portfolio</label>
+                                        <input type="url" id="website" class="form-control">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Professional Summary -->
+                            <section class="form-section">
+                                <h2 class="section-title">Professional Summary</h2>
+                                <div class="form-group">
+                                    <label class="form-label" for="summary">Summary</label>
+                                    <textarea id="summary" class="form-control" rows="4"></textarea>
+                                </div>
+                            </section>
+
+                            <!-- Skills -->
+                            <section class="form-section">
+                                <h2 class="section-title">Skills</h2>
+                                <div class="form-group">
+                                    <label class="form-label" for="skillInput">Add Skills</label>
+                                    <div class="skill-input-container">
+                                        <input type="text" id="skillInput" class="form-control" placeholder="Type a skill and press Enter">
+                                        <button type="button" id="addSkillBtn" class="btn btn--sm btn--primary">Add</button>
+                                    </div>
+                                </div>
+                                <div class="skills-list" id="skillsList"></div>
+                            </section>
+
+                            <!-- Work Experience -->
+                            <section class="form-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Work Experience</h2>
+                                    <button type="button" id="addExperienceBtn" class="btn btn--sm btn--secondary">+ Add Experience</button>
+                                </div>
+                                <div id="experienceList" class="dynamic-list"></div>
+                            </section>
+
+                            <!-- Education -->
+                            <section class="form-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Education</h2>
+                                    <button type="button" id="addEducationBtn" class="btn btn--sm btn--secondary">+ Add Education</button>
+                                </div>
+                                <div id="educationList" class="dynamic-list"></div>
+                            </section>
+
+                            <!-- Projects -->
+                            <section class="form-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Projects</h2>
+                                    <button type="button" id="addProjectBtn" class="btn btn--sm btn--secondary">+ Add Project</button>
+                                </div>
+                                <div id="projectsList" class="dynamic-list"></div>
+                            </section>
+
+                            <!-- Certifications -->
+                            <section class="form-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Certifications</h2>
+                                    <button type="button" id="addCertificationBtn" class="btn btn--sm btn--secondary">+ Add Certification</button>
+                                </div>
+                                <div id="certificationsList" class="dynamic-list"></div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Preview Panel -->
+                    <div class="preview-panel">
+                        <div class="preview-header">
+                            <h3>Live Preview</h3>
+                            <div class="preview-controls">
+                                <button id="zoomOut" class="control-btn">−</button>
+                                <span id="zoomLevel">100%</span>
+                                <button id="zoomIn" class="control-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="preview-container">
+                            <div class="resume-preview" id="resumePreview">
+                                <div class="resume-content">
+                                    <div class="resume-header">
+                                        <h1 id="previewName">Your Name</h1>
+                                        <h2 id="previewTitle">Your Title</h2>
+                                        <div class="contact-info">
+                                            <span id="previewEmail"></span>
+                                            <span id="previewPhone"></span>
+                                            <span id="previewLocation"></span>
+                                            <span id="previewWebsite"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="resume-section" id="summarySection">
+                                        <h3>Professional Summary</h3>
+                                        <p id="previewSummary"></p>
+                                    </div>
+
+                                    <div class="resume-section" id="skillsSection">
+                                        <h3>Skills</h3>
+                                        <div class="skills-grid" id="previewSkills"></div>
+                                    </div>
+
+                                    <div class="resume-section" id="experienceSection">
+                                        <h3>Work Experience</h3>
+                                        <div id="previewExperience"></div>
+                                    </div>
+
+                                    <div class="resume-section" id="educationSection">
+                                        <h3>Education</h3>
+                                        <div id="previewEducation"></div>
+                                    </div>
+
+                                    <div class="resume-section" id="projectsSection">
+                                        <h3>Projects</h3>
+                                        <div id="previewProjects"></div>
+                                    </div>
+
+                                    <div class="resume-section" id="certificationsSection">
+                                        <h3>Certifications</h3>
+                                        <div id="previewCertifications"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Auto-save indicator -->
+        <div class="autosave-indicator" id="autosaveIndicator">
+            <span>Auto-saved</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
